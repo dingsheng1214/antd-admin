@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import {
-  Form, Icon, Input, Button, Checkbox, message,
+  Form, Input, Button, message,
 } from 'antd';
 import axios from 'axios'
 import { goToPage } from '../../config/util';
-
 import './user.scss';
 
-class UserLogin extends Component {
+
+class UserSignUp extends Component {
   static contextTypes = {
     router: PropTypes.object,
   }
@@ -20,7 +20,7 @@ class UserLogin extends Component {
     form.validateFields((err, values) => {
       if (!err) {
         const { username, password } = values
-        axios.post('/api/v1/user/login', {
+        axios.post('/api/v1/user/signUp', {
           username,
           password,
         }).then((resp) => {
@@ -38,10 +38,22 @@ class UserLogin extends Component {
     });
   }
 
-  // 跳到注册页面
+  // 跳到登录页面
   goToPageSingUp = (e) => {
     e.preventDefault()
-    goToPage(this, '/user/signUp')
+    goToPage(this, '/user/login')
+  }
+
+  // 确认密码
+  handleConfirmPassword = (rule, value, callback) => {
+    const { form } = this.props
+    const { getFieldValue } = form
+    console.log(value, getFieldValue('password'))
+    if (value && value !== getFieldValue('password')) {
+      callback('两次输入不一致！')
+    }
+    // Note: 必须总是返回一个 callback，否则 validateFieldsAndScroll 无法响应
+    callback()
   }
 
   render() {
@@ -54,31 +66,35 @@ class UserLogin extends Component {
             <span>Ant Design 后台通用模板</span>
           </div>
           <Form onSubmit={this.handleSubmit} className="login-form">
+            <h3 style={{ marginBottom: '20px' }}>注册</h3>
             <Form.Item>
               {getFieldDecorator('username', {
                 rules: [{ required: true, message: '请输入用户名!' }, { whitespace: true, message: '用户名不能为空' }],
               })(
-                <Input size="large" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />,
+                <Input size="large" placeholder="用户名" />,
               )}
             </Form.Item>
             <Form.Item>
               {getFieldDecorator('password', {
-                rules: [{ required: true, message: '请输出密码' }],
+                rules: [{ required: true, message: '请输入密码' }, { min: 6, message: '至少六位数密码' }],
               })(
-                <Input size="large" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />,
+                <Input size="large" type="password" placeholder="至少六位密码，区分大小写" />,
               )}
             </Form.Item>
             <Form.Item>
-              {getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: true,
+              {getFieldDecorator('newPassword', {
+                rules: [{ required: true, message: '请确认密码' }, {
+                  validator: this.handleConfirmPassword,
+                }],
               })(
-                <Checkbox>自动登录</Checkbox>,
+                <Input size="large" type="password" placeholder="确认密码" />,
               )}
+            </Form.Item>
+            <Form.Item>
               <Button size="large" type="primary" htmlType="submit" className="login-form-button">
-                登录
+                注册
               </Button>
-              <a className="login-form-signUp" onClick={this.goToPageSingUp}>注册账户</a>
+              <a className="login-form-signUp" onClick={this.goToPageSingUp}>使用已有账户登录</a>
             </Form.Item>
           </Form>
         </div>
@@ -87,11 +103,11 @@ class UserLogin extends Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(UserLogin);
+const WrappedNormalSignUpForm = Form.create({ name: 'normal_login' })(UserSignUp);
 
 
-export default WrappedNormalLoginForm
+export default WrappedNormalSignUpForm
 
-UserLogin.propTypes = {
+UserSignUp.propTypes = {
   form: PropTypes.object.isRequired,
 }

@@ -28,7 +28,7 @@ const config = merge(common, {
       index: '/public/index.html'
     },
     proxy: { // client端 port为 8887， server端接口为 3333， 所以我们这里要设置 proxy代理
-      '/api': 'http://localhost:3333'
+      '/api': 'http://localhost:8888'
     }
   },
   module: {
