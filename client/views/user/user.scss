@@ -1,0 +1,33 @@
+.user-login {
+  height: 100vh;
+  background-color: #f0f2f5;
+  background-image: url("../../static/user-login-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .user-login-content {
+    padding: 40px;
+    .user-login-header {
+      text-align: center;
+      height: 44px;
+      line-height: 44px;
+      font-size: 33px;
+      font-weight: 600;
+      font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+    }
+    .login-form {
+      margin-top: 40px;
+      width: 388px;
+      .login-form-signUp {
+        float: right;
+      }
+      .login-form-button {
+        width: 100%;
+      }
+    }
+
+  }
+}
