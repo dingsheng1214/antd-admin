@@ -1,0 +1,39 @@
+.home-page {
+  min-height: 100vh;
+  .home-side {
+    width: 256px;
+    .logo {
+      height: 64px;
+      line-height: 64px;
+      padding-left: 24px;
+      background: #002140;
+      a {
+        img {
+          width: 32px;
+          height: 32px;
+        }
+        h1 {
+          display: inline-block;
+          margin: 0 0 0 12px;
+          color: #fff;
+          font-weight: 600;
+          font-size: 20px;
+          font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+          vertical-align: middle
+        }
+      }
+    }
+  }
+  .home-right {
+    .trigger {
+      font-size: 18px;
+      line-height: 64px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color .3s;
+      &:hover {
+        color: #1890ff;
+      }
+    }
+  }
+}
