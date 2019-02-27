@@ -61,12 +61,15 @@ class UserSignUp extends Component {
     const { getFieldDecorator } = form;
     return (
       <div className="user-login">
+        <div className="user-login-desc">
+          <p>Ant Design</p>
+          <p>通用后台管理系统</p>
+        </div>
         <div className="user-login-content">
           <div className="user-login-header">
-            <span>Ant Design 后台通用模板</span>
+            <span>注册</span>
           </div>
           <Form onSubmit={this.handleSubmit} className="login-form">
-            <h3 style={{ marginBottom: '20px' }}>注册</h3>
             <Form.Item>
               {getFieldDecorator('username', {
                 rules: [{ required: true, message: '请输入用户名!' }, { whitespace: true, message: '用户名不能为空' }],

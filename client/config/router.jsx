@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Route, Switch,
+  Route, Switch, Redirect,
 } from 'react-router-dom'
 import menuList from './menuList';
 import UserLogin from '../views/user/user-login';
@@ -13,27 +13,39 @@ const menuRoutes = () => menuList.map((menu) => {
     return (
       menu.subs.map(sub => (
         <Route
+          key={sub.oath}
           path={sub.path}
           render={() => (
-            <div>
-              {sub.title}
-              {' '}
-            </div>
+            <HomePage>
+              <div>
+                {sub.title}
+              </div>
+            </HomePage>
           )}
         />
       ))
     )
   }
   return (
-    <Route path={menu.path} render={() => <div>{menu.title}</div>} />
+    <Route
+      key={menu.path}
+      path={menu.path}
+      render={() => (
+        <HomePage>
+          <div>
+            {menu.title}
+          </div>
+        </HomePage>
+      )}
+    />
   )
 })
 
 export default () => (
   <Switch>
-    <Route path="/user/login" exact component={UserLogin} />
-    <Route path="/user/signUp" exact component={UserSignUp} />
-    <Route path="/index" exact component={HomePage} />
+    <Route path="/" exact render={() => (<Redirect to="/user/login" />)} />
+    <Route path="/user/login" exact component={UserLogin} key="login" />
+    <Route path="/user/signUp" exact component={UserSignUp} key="signUp" />
     {menuRoutes()}
   </Switch>
 )

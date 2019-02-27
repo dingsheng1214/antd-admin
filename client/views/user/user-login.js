@@ -49,9 +49,13 @@ class UserLogin extends Component {
     const { getFieldDecorator } = form;
     return (
       <div className="user-login">
+        <div className="user-login-desc">
+          <p>Ant Design</p>
+          <p>通用后台管理系统</p>
+        </div>
         <div className="user-login-content">
           <div className="user-login-header">
-            <span>Ant Design 后台通用模板</span>
+            <span>登录</span>
           </div>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>

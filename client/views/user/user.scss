@@ -1,15 +1,25 @@
 .user-login {
   height: 100vh;
   background-color: #f0f2f5;
-  background-image: url("../../static/user-login-bg.svg");
+  background-image: url("../../static/login-bg.jpg");
   background-repeat: no-repeat;
-  background-position: center 110px;
+  background-position: center 0px;
   background-size: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+
+  .user-login-desc {
+    font-size: 33px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+    text-align: center;
+  }
   .user-login-content {
     padding: 40px;
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
     .user-login-header {
       text-align: center;
       height: 44px;
@@ -20,7 +30,7 @@
     }
     .login-form {
       margin-top: 40px;
-      width: 388px;
+      width: 300px;
       .login-form-signUp {
         float: right;
       }

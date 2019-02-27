@@ -6,6 +6,8 @@ import {
 import {
   Layout, Menu, Breadcrumb, Icon,
 } from 'antd';
+import Chart from '../common/chart';
+
 import './home.scss'
 import Logo from '../../static/home-log.svg';
 import menuList from '../../config/menuList';
@@ -105,6 +107,7 @@ class HomePage extends Component {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+              <Chart />
               { children }
             </div>
           </Content>
