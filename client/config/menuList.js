@@ -4,12 +4,15 @@
  * @date 2019-02-26
 */
 
+import { AsyncLoadComponent } from './util'
+
 const menuList = [
   {
     key: '1',
     icon: 'pie-chart',
-    title: '首页',
-    path: '/index',
+    title: '工作台',
+    path: '/dashboard',
+    component: AsyncLoadComponent(() => import('../views/content/dashboard')),
     isSub: false,
   },
   {
@@ -19,8 +22,18 @@ const menuList = [
     path: '/ui',
     isSub: true,
     subs: [
-      { key: '21', title: '按钮', path: '/ui/button' },
-      { key: '22', title: 'loading', path: '/ui/loading' },
+      {
+        key: '21',
+        title: '按钮',
+        path: '/ui/button',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+      },
+      {
+        key: '22',
+        title: 'loading',
+        path: '/ui/loading',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+      },
     ],
   },
   {
@@ -30,8 +43,20 @@ const menuList = [
     path: '/form',
     isSub: true,
     subs: [
-      { key: '31', title: '登录', path: '/form/button' },
-      { key: '32', title: '注册', path: '/form/loading' },
+      {
+        key: '31',
+        title: '登录',
+        path: '/form/button',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+
+      },
+      {
+        key: '32',
+        title: '注册',
+        path: '/form/loading',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+
+      },
     ],
   },
   {
@@ -39,11 +64,29 @@ const menuList = [
     icon: 'pie-chart',
     title: '图标',
     path: '/charts',
-    isSub: false,
+    isSub: true,
     subs: [
-      { key: '41', title: '柱形图', path: '/charts/bar' },
-      { key: '42', title: '饼图', path: '/charts/pie' },
-      { key: '43', title: '折线图', path: '/charts/line' },
+      {
+        key: '41',
+        title: '柱形图',
+        path: '/charts/bar',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+
+      },
+      {
+        key: '42',
+        title: '饼图',
+        path: '/charts/pie',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+
+      },
+      {
+        key: '43',
+        title: '折线图',
+        path: '/charts/line',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+
+      },
     ],
   },
   {
@@ -51,7 +94,23 @@ const menuList = [
     icon: 'pie-chart',
     title: '权限管理',
     path: '/permission',
+    component: AsyncLoadComponent(() => import('../views/content/dashboard')),
     isSub: false,
+  },
+  {
+    key: '6',
+    icon: 'pie-chart',
+    title: '个人页面',
+    path: '/user',
+    isSub: true,
+    subs: [
+      {
+        key: '61',
+        title: '个人中心',
+        path: '/user/info',
+        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+      },
+    ],
   },
 ]
 

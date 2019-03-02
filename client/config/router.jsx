@@ -7,7 +7,7 @@ import UserLogin from '../views/user/user-login';
 import UserSignUp from '../views/user/user-signup';
 import HomePage from '../views/home/home'
 
-
+// 路由生成方法
 const menuRoutes = () => menuList.map((menu) => {
   if (menu.isSub) {
     return (
@@ -18,7 +18,7 @@ const menuRoutes = () => menuList.map((menu) => {
           render={() => (
             <HomePage>
               <div>
-                {sub.title}
+                {sub.component}
               </div>
             </HomePage>
           )}
@@ -31,11 +31,7 @@ const menuRoutes = () => menuList.map((menu) => {
       key={menu.path}
       path={menu.path}
       render={() => (
-        <HomePage>
-          <div>
-            {menu.title}
-          </div>
-        </HomePage>
+        <HomePage children={menu.component} />
       )}
     />
   )

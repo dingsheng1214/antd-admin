@@ -9,6 +9,8 @@
  * @param that
  * @param pathname
  */
+import React from 'react';
+
 const goToPage = (that, pathname) => {
   const { router } = that.context
   router.history.push({
@@ -16,5 +18,54 @@ const goToPage = (that, pathname) => {
   })
 }
 
+/**
+ * 动态路由
+ * @param loadComponent
+ * @constructor
+ */
+const AsyncLoadComponent = (loadComponent) => {
+  class AsyncComponent extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        Component: null,
+      }
+    }
 
-export { goToPage }
+    componentWillMount() {
+      if (this.hasLoadedComponent()) {
+        return;
+      }
+      // 加载模块
+      loadComponent()
+        .then((module) => {
+          console.log('module', module);
+          return module.default
+        })
+        .then((Component) => {
+          this.setState({ Component });
+        })
+        .catch((err) => {
+          console.error('Cannot load component in <AsyncComponent />');
+          throw err;
+        });
+    }
+
+    // 是否 加载了 模块
+    hasLoadedComponent() {
+      const { Component } = this.state
+      console.log('Component', Component);
+      return Component !== null;
+    }
+
+    render() {
+      const { Component } = this.state;
+      return (Component) ? <Component {...this.props} /> : null;
+    }
+  }
+  // 注意这里返回的是 组件 而不应该是  class
+  return <AsyncComponent />
+}
+
+
+export { goToPage, AsyncLoadComponent }

@@ -17,9 +17,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@antv/data-set": "^0.10.2",
     "antd": "^3.13.6",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
+    "bizcharts": "^3.4.3",
     "koa": "^2.7.0",
     "koa-body": "^4.0.8",
     "koa-logger": "^3.2.0",
@@ -32,6 +34,7 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-hot-loader": "^4.6.5",
+    "react-loadable": "^5.5.0",
     "react-router-dom": "^4.3.1",
     "recharts": "^1.5.0",
     "sequelize": "^4.42.0"
@@ -40,6 +43,7 @@
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",

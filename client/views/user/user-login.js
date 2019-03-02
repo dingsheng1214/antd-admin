@@ -29,7 +29,7 @@ class UserLogin extends Component {
             message.error(msg);
           } else {
             message.success(msg);
-            goToPage(this, '/index')
+            goToPage(this, '/dashboard')
           }
         }).catch((error) => {
           console.log(error);

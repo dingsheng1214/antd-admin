@@ -25,14 +25,27 @@
     }
   }
   .home-right {
-    .trigger {
-      font-size: 18px;
-      line-height: 64px;
-      padding: 0 24px;
-      cursor: pointer;
-      transition: color .3s;
-      &:hover {
-        color: #1890ff;
+    .home-right-header {
+      background: #fff;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .home-right-trigger {
+        font-size: 18px;
+        line-height: 64px;
+        padding: 0 24px;
+        cursor: pointer;
+        transition: color .3s;
+        &:hover {
+          color: #1890ff;
+        }
+      }
+      .home-right-avatar {
+        background: #f56a00;
+        vertical-align: middle;
+        margin-right: 70px;
+        cursor: pointer;
       }
     }
   }

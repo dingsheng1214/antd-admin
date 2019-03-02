@@ -4,10 +4,8 @@ import {
   Link,
 } from 'react-router-dom'
 import {
-  Layout, Menu, Breadcrumb, Icon,
+  Layout, Menu, Icon, Avatar, Dropdown,
 } from 'antd';
-import Chart from '../common/chart';
-
 import './home.scss'
 import Logo from '../../static/home-log.svg';
 import menuList from '../../config/menuList';
@@ -68,6 +66,21 @@ class HomePage extends Component {
   render() {
     const { collapsed } = this.state
     const { children } = this.props
+    // 点击用户头像 下拉选项
+    const dropDownMenu = (
+      <Menu>
+        <Menu.Item key="0">
+          <Link to="/user/info">
+            个人中心
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Link to="/user/login">
+            退出
+          </Link>
+        </Menu.Item>
+      </Menu>
+    )
     return (
       <Layout className="home-page">
         {/* 侧边栏 */}
@@ -94,20 +107,21 @@ class HomePage extends Component {
         </Sider>
         {/* 主体内容 */}
         <Layout className="home-right">
-          <Header style={{ background: '#fff', padding: 0 }}>
+          <Header className="home-right-header">
             <Icon
-              className="trigger"
+              className="home-right-trigger"
               type={collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
+            <Dropdown overlay={dropDownMenu}>
+              <Avatar className="home-right-avatar" size="middle">
+                丁胜
+              </Avatar>
+            </Dropdown>
+
           </Header>
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              <Chart />
+          <Content style={{ margin: '24px' }}>
+            <div>
               { children }
             </div>
           </Content>
