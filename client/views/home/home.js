@@ -6,6 +6,8 @@ import {
 import {
   Layout, Menu, Icon, Avatar, Dropdown,
 } from 'antd';
+import store from '../../store';
+
 import './home.scss'
 import Logo from '../../static/home-log.svg';
 import menuList from '../../config/menuList';
@@ -26,6 +28,13 @@ class HomePage extends Component {
     this.setState({
       collapsed: !collapsed,
     });
+  }
+
+  // 退出loginOut
+  loginOut = () => {
+    store.dispatch({
+      type: 'login_out',
+    })
   }
 
   // 左侧菜单生成函数
@@ -75,7 +84,7 @@ class HomePage extends Component {
           </Link>
         </Menu.Item>
         <Menu.Item key="1">
-          <Link to="/user/login">
+          <Link to="/user/login" onClick={this.loginOut}>
             退出
           </Link>
         </Menu.Item>

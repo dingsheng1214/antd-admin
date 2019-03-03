@@ -5,7 +5,6 @@ import {
   Axis,
   Tooltip,
   Coord,
-  Label,
   Legend,
   Guide,
 } from 'bizcharts';
@@ -15,24 +14,24 @@ const { DataView } = DataSet;
 const { Html } = Guide;
 const data = [
   {
-    item: '事例一',
-    count: 40,
-  },
-  {
-    item: '事例二',
+    item: '其它',
     count: 21,
   },
   {
-    item: '事例三',
+    item: '食用酒水',
     count: 17,
   },
   {
-    item: '事例四',
+    item: '个户健康',
     count: 13,
   },
   {
-    item: '事例五',
+    item: '服饰箱包',
     count: 9,
+  },
+  {
+    item: '家用电器',
+    count: 40,
   },
 ];
 const dv = new DataView();
@@ -50,17 +49,17 @@ const cols = {
 const BasicPie = () => (
   <div>
     <Chart
-      height={window.innerHeight}
+      height={350}
       data={dv}
       scale={cols}
-      padding={[80, 100, 80, 80]}
+      padding="auto"
       forceFit
     >
-      <Coord type="theta" radius={0.75} innerRadius={0.6} />
+      <Coord type="theta" radius={0.8} innerRadius={0.8} />
       <Axis name="percent" />
       <Legend
         position="right"
-        offsetY={-window.innerHeight / 2 + 120}
+        offsetY={-270 / 2 + 120}
         offsetX={-100}
       />
       <Tooltip
@@ -70,7 +69,7 @@ const BasicPie = () => (
       <Guide>
         <Html
           position={['50%', '50%']}
-          html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>主机<br><span style=&quot;color:#262626;font-size:2.5em&quot;>200</span>台</div>"
+          html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>销售额<br><span style=&quot;color:#262626;font-size:1.5em&quot;>¥ 15,781</span></div>"
           alignX="middle"
           alignY="middle"
         />
@@ -90,12 +89,7 @@ const BasicPie = () => (
           lineWidth: 1,
           stroke: '#fff',
         }}
-      >
-        <Label
-          content="percent"
-          formatter={(val, item) => `${item.point.item}: ${val}`}
-        />
-      </Geom>
+      />
     </Chart>
   </div>
 )

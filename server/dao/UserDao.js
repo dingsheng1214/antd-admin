@@ -8,9 +8,9 @@ class UserDao {
     return result[0]
   }
   // 注册
-  static async createUser ({ username, password }) {
-    const sql = 'insert into user (username, password) values (?, ?)'
-    const result = await query(sql, [username, password])
+  static async createUser ({ username, password, email }) {
+    const sql = 'insert into user (username, password, email) values (?, ?, ?)'
+    const result = await query(sql, [username, password, email])
     return result[0]
   }
 }

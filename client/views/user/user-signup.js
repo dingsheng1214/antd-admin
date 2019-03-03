@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import {
-  Form, Input, Button, message,
+  Form, Input, Button, message, Icon,
 } from 'antd';
 import axios from 'axios'
 import { goToPage } from '../../config/util';
+import store from '../../store'
 import './user.scss';
 
 
@@ -19,17 +20,23 @@ class UserSignUp extends Component {
     const { form } = this.props
     form.validateFields((err, values) => {
       if (!err) {
-        const { username, password } = values
+        const { username, password, email } = values
         axios.post('/api/v1/user/signUp', {
           username,
           password,
+          email,
         }).then((resp) => {
-          const { code, msg } = resp.data
+          const { code, msg, data: user } = resp.data
+          const { username: name } = user
           if (code !== 200) {
             message.error(msg);
           } else {
             message.success(msg);
-            goToPage(this, '/index')
+            goToPage(this, '/dashboard')
+            store.dispatch({
+              type: 'login_success',
+              value: name,
+            })
           }
         }).catch((error) => {
           console.log(error);
@@ -74,14 +81,25 @@ class UserSignUp extends Component {
               {getFieldDecorator('username', {
                 rules: [{ required: true, message: '请输入用户名!' }, { whitespace: true, message: '用户名不能为空' }],
               })(
-                <Input size="large" placeholder="用户名" />,
+                <Input size="large" placeholder="用户名" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />,
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator('email', {
+                rules: [
+                  { required: true, message: '请输入邮箱!' },
+                  { whitespace: true, message: '邮箱不能为空' },
+                  { type: 'email', message: '请输入正确的邮箱格式!' },
+                ],
+              })(
+                <Input size="large" placeholder="邮箱" type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />,
               )}
             </Form.Item>
             <Form.Item>
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: '请输入密码' }, { min: 6, message: '至少六位数密码' }],
               })(
-                <Input size="large" type="password" placeholder="至少六位密码，区分大小写" />,
+                <Input size="large" type="password" placeholder="至少六位密码，区分大小写" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />,
               )}
             </Form.Item>
             <Form.Item>
@@ -90,7 +108,7 @@ class UserSignUp extends Component {
                   validator: this.handleConfirmPassword,
                 }],
               })(
-                <Input size="large" type="password" placeholder="确认密码" />,
+                <Input size="large" type="password" placeholder="确认密码" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />,
               )}
             </Form.Item>
             <Form.Item>

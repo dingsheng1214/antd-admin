@@ -25,7 +25,7 @@ class UserService {
   }
   // 注册
   static async createUser (ctx, data) {
-    if (data.username && data.password) {
+    if (data.username && data.password && data.email) {
       const existUser = await UserDao.findUserByName(data.username)
       if (existUser) {
         // 反馈存在用户名
@@ -40,7 +40,9 @@ class UserService {
         // 保存登录状态
         ctx.session.user = data.username
         // 返回消息
-        ctx.body = statusCode.SUCCESS_200('创建用户成功')
+        ctx.body = statusCode.SUCCESS_200('创建用户成功', {
+          username: data.username
+        })
       }
     } else {
       // 参数错误

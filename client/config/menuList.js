@@ -26,38 +26,29 @@ const menuList = [
         key: '21',
         title: '按钮',
         path: '/ui/button',
-        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+        component: AsyncLoadComponent(() => import('../views/content/ui/button')),
       },
       {
         key: '22',
-        title: 'loading',
+        title: '加载',
         path: '/ui/loading',
-        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+        component: AsyncLoadComponent(() => import('../views/content/ui/loading')),
+      },
+      {
+        key: '23',
+        title: '弹出',
+        path: '/ui/message',
+        component: AsyncLoadComponent(() => import('../views/content/ui/message')),
       },
     ],
   },
   {
     key: '3',
     icon: 'pie-chart',
-    title: '表单',
-    path: '/form',
-    isSub: true,
-    subs: [
-      {
-        key: '31',
-        title: '登录',
-        path: '/form/button',
-        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
-
-      },
-      {
-        key: '32',
-        title: '注册',
-        path: '/form/loading',
-        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
-
-      },
-    ],
+    title: '订单管理',
+    path: '/order',
+    component: AsyncLoadComponent(() => import('../views/content/ui/message')),
+    isSub: false,
   },
   {
     key: '4',

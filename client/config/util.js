@@ -38,15 +38,11 @@ const AsyncLoadComponent = (loadComponent) => {
       }
       // 加载模块
       loadComponent()
-        .then((module) => {
-          console.log('module', module);
-          return module.default
-        })
+        .then(module => module.default)
         .then((Component) => {
           this.setState({ Component });
         })
         .catch((err) => {
-          console.error('Cannot load component in <AsyncComponent />');
           throw err;
         });
     }
@@ -54,7 +50,6 @@ const AsyncLoadComponent = (loadComponent) => {
     // 是否 加载了 模块
     hasLoadedComponent() {
       const { Component } = this.state
-      console.log('Component', Component);
       return Component !== null;
     }
 

@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import MyCard from '../../common/Card'
 import {
-  BasicColumn, BasicColumn2, BasicArea, BasicPie,
+  BasicColumn, BasicColumn2, BasicColumn3, BasicArea, BasicPie,
 } from '../../common/BizCharts';
 
 const { TabPane } = Tabs;
@@ -46,11 +46,21 @@ class Dashoard extends React.Component {
             </Card>
           </Col>
         </Row>
-        <Row gutter={{ sm: 16 }} style={{ marginTop: '20px' }}>
+        <Row gutter={{ sm: 16 }} style={{ marginTop: '20px', height: '800px' }}>
           <Col span={12}>
-            <Card>
-              <h4>销售额</h4>
-              <BasicPie />
+            <Card title="销售额类别占比">
+              <div style={{ padding: '24px' }}>
+                <h4>销售额</h4>
+                <BasicPie />
+              </div>
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card title="新增订单趋势">
+              <div style={{ padding: '24px' }}>
+                <h4>新增订单</h4>
+                <BasicColumn3 />
+              </div>
             </Card>
           </Col>
         </Row>

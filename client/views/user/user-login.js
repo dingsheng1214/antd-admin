@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import {
-  Form, Icon, Input, Button, Checkbox, message,
+  Form, Icon, Input, Button, Checkbox,
 } from 'antd';
-import axios from 'axios'
+import { doLogin } from './store/actionCreator';
 import { goToPage } from '../../config/util';
-
+import store from '../../store'
 import './user.scss';
 
 class UserLogin extends Component {
@@ -19,21 +19,9 @@ class UserLogin extends Component {
     const { form } = this.props
     form.validateFields((err, values) => {
       if (!err) {
-        const { username, password } = values
-        axios.post('/api/v1/user/login', {
-          username,
-          password,
-        }).then((resp) => {
-          const { code, msg } = resp.data
-          if (code !== 200) {
-            message.error(msg);
-          } else {
-            message.success(msg);
-            goToPage(this, '/dashboard')
-          }
-        }).catch((error) => {
-          console.log(error);
-        })
+        // 派发action
+        const action = doLogin(this, values)
+        store.dispatch(action)
       }
     });
   }
@@ -90,6 +78,7 @@ class UserLogin extends Component {
     )
   }
 }
+
 
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(UserLogin);
 
