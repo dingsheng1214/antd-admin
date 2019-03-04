@@ -18,9 +18,18 @@ const {
 const { SubMenu } = Menu;
 
 class HomePage extends Component {
-  state = {
-    collapsed: false,
-  };
+  constructor() {
+    super()
+    this.state = {
+      collapsed: false,
+      username: store.getState().user.username,
+    }
+    store.subscribe(() => {
+      this.setState({
+        username: store.getState().user.username,
+      })
+    })
+  }
 
   // 左侧菜单切换按钮
   toggle = () => {
@@ -73,7 +82,7 @@ class HomePage extends Component {
   })
 
   render() {
-    const { collapsed } = this.state
+    const { collapsed, username } = this.state
     const { children } = this.props
     // 点击用户头像 下拉选项
     const dropDownMenu = (
@@ -123,11 +132,13 @@ class HomePage extends Component {
               onClick={this.toggle}
             />
             <Dropdown overlay={dropDownMenu}>
-              <Avatar className="home-right-avatar" size="middle">
-                丁胜
-              </Avatar>
+              <div style={{ marginRight: '70px' }}>
+                <Avatar className="home-right-avatar" size="middle">
+                  {username}
+                </Avatar>
+                <span>{username}</span>
+              </div>
             </Dropdown>
-
           </Header>
           <Content style={{ margin: '24px' }}>
             <div>

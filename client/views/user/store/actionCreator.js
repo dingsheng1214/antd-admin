@@ -9,21 +9,21 @@ const doLogin = (that, data) => {
       username,
       password,
     }).then((resp) => {
+      console.log(resp);
       const { code, msg, data: user } = resp.data
-      const { username: name } = user
-      console.log(code, msg, name);
       if (code !== 200) {
         message.error(msg);
       } else {
         message.success(msg);
-        goToPage(that, '/dashboard')
+        const { username: name } = user
         dispatch({
           type: 'login_success',
           value: name,
         })
+        goToPage(that, '/dashboard')
       }
     }).catch((error) => {
-      console.log(error);
+      console.log('error', error);
     })
   }
 }

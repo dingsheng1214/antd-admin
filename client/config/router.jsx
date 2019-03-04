@@ -1,19 +1,21 @@
 import React from 'react';
 import {
-  Route, Switch, Redirect,
+  Route, Switch, Redirect, withRouter,
 } from 'react-router-dom'
 import menuList from './menuList';
 import UserLogin from '../views/user/user-login';
 import UserSignUp from '../views/user/user-signup';
 import HomePage from '../views/home/home'
+import { AuthorizedRoute } from './util';
 
+const PrivateRoute = withRouter(AuthorizedRoute)
 // 路由生成方法
 const menuRoutes = () => menuList.map((menu) => {
   if (menu.isSub) {
     return (
       menu.subs.map(sub => (
-        <Route
-          key={sub.oath}
+        <PrivateRoute
+          key={sub.path}
           path={sub.path}
           render={() => (
             <HomePage>
@@ -27,7 +29,7 @@ const menuRoutes = () => menuList.map((menu) => {
     )
   }
   return (
-    <Route
+    <PrivateRoute
       key={menu.path}
       path={menu.path}
       render={() => (

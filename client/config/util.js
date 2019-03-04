@@ -3,14 +3,16 @@
  * @author Ding Sheng
  * @date 2019-02-26
 */
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types';
+
 
 /**
  * react router 切换路由
  * @param that
  * @param pathname
  */
-import React from 'react';
-
 const goToPage = (that, pathname) => {
   const { router } = that.context
   router.history.push({
@@ -62,5 +64,28 @@ const AsyncLoadComponent = (loadComponent) => {
   return <AsyncComponent />
 }
 
+/**
+ * 强制登录
+ * @param localRender
+ * @param rest
+ * @returns {*}
+ * @constructor
+ */
+const AuthorizedRoute = ({ render: localRender, ...rest }) => {
+  const isLogin = sessionStorage.getItem('username')
+  if (!isLogin) {
+    localRender = () => <Redirect to="/user/login" />
+  }
+  return (
+    <Route
+      {...rest}
+      render={localRender}
+    />
+  )
+}
+AuthorizedRoute.propTypes = {
+  render: PropTypes.func.isRequired,
+}
 
-export { goToPage, AsyncLoadComponent }
+
+export { goToPage, AsyncLoadComponent, AuthorizedRoute }
