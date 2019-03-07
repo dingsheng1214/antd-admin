@@ -9,7 +9,7 @@ import { AsyncLoadComponent } from './util'
 const menuList = [
   {
     key: '1',
-    icon: 'pie-chart',
+    icon: 'home',
     title: '工作台',
     path: '/dashboard',
     component: AsyncLoadComponent(() => import('../views/content/dashboard')),
@@ -44,37 +44,37 @@ const menuList = [
   },
   {
     key: '3',
-    icon: 'pie-chart',
+    icon: 'profile',
     title: '订单管理',
     path: '/order',
-    component: AsyncLoadComponent(() => import('../views/content/ui/message')),
+    component: AsyncLoadComponent(() => import('../views/content/order')),
     isSub: false,
   },
   {
     key: '4',
-    icon: 'pie-chart',
-    title: '图标',
-    path: '/charts',
+    icon: 'copyright',
+    title: '异常页面',
+    path: '/error',
     isSub: true,
     subs: [
       {
         key: '41',
-        title: '柱形图',
-        path: '/charts/bar',
+        title: '403',
+        path: '/error/403',
         component: AsyncLoadComponent(() => import('../views/content/dashboard')),
 
       },
       {
         key: '42',
-        title: '饼图',
-        path: '/charts/pie',
+        title: '404',
+        path: '/error/404',
         component: AsyncLoadComponent(() => import('../views/content/dashboard')),
 
       },
       {
         key: '43',
-        title: '折线图',
-        path: '/charts/line',
+        title: '500',
+        path: '/error/500',
         component: AsyncLoadComponent(() => import('../views/content/dashboard')),
 
       },
@@ -82,7 +82,7 @@ const menuList = [
   },
   {
     key: '5',
-    icon: 'pie-chart',
+    icon: 'tool',
     title: '权限管理',
     path: '/permission',
     component: AsyncLoadComponent(() => import('../views/content/dashboard')),
@@ -90,7 +90,7 @@ const menuList = [
   },
   {
     key: '6',
-    icon: 'pie-chart',
+    icon: 'team',
     title: '个人页面',
     path: '/user',
     isSub: true,

@@ -124,7 +124,7 @@ class UserSignUp extends Component {
   }
 }
 
-const WrappedNormalSignUpForm = Form.create({ name: 'normal_login' })(UserSignUp);
+const WrappedNormalSignUpForm = Form.create({ name: 'normal_signUp' })(UserSignUp);
 
 
 export default WrappedNormalSignUpForm

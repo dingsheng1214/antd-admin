@@ -110,14 +110,14 @@ class HomePage extends Component {
           width="256"
         >
           <div className="logo">
-            <a href="">
+            <Link to="/dashboard">
               <img src={Logo} alt="logo" />
               {
                 !collapsed && (<h1>后台通用模板</h1>)
               }
-            </a>
+            </Link>
           </div>
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+          <Menu theme="dark" mode="inline">
             {
               this.menuGenerator()
             }
