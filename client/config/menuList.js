@@ -61,21 +61,21 @@ const menuList = [
         key: '41',
         title: '403',
         path: '/error/403',
-        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+        component: AsyncLoadComponent(() => import('../views/content/error/403')),
 
       },
       {
         key: '42',
         title: '404',
         path: '/error/404',
-        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+        component: AsyncLoadComponent(() => import('../views/content/error/404')),
 
       },
       {
         key: '43',
         title: '500',
         path: '/error/500',
-        component: AsyncLoadComponent(() => import('../views/content/dashboard')),
+        component: AsyncLoadComponent(() => import('../views/content/error/500')),
 
       },
     ],
