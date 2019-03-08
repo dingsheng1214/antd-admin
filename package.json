@@ -8,6 +8,7 @@
     "build:dev": "cross-env NODE_ENV=development webpack --config build/webpack.config.dev.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.dev.js",
     "build": "npm run clear && npm run dev",
+    "build:prod": "cross-env NODE_ENV=production webpack --config build/webpack.config.prod.js",
     "server": "cross-env NODE_ENV=development nodemon server/server.js",
     "uploadCdn": "node build/qiNiuUpload.js",
     "start": "cross-env NODE_ENV=production node server/server.js",
