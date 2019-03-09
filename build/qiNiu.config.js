@@ -2,8 +2,8 @@ module.exports = {
   cdn: {
     ak: 'oncKoImBIVRckKrIB0b3wS-6bknIozP4VtYAXDZT',
     sk: 'IIPYWlaUijIm-ro5Bj3dCGvkUojLIOF-IHDDiDFh',
-    bucket: 'antd-admin',
-    host: 'http://po21rb75e.bkt.clouddn.com/'
+    bucket: 'admin',
+    host: 'http://po3exyeg9.bkt.clouddn.com/'
   }
 }
 
