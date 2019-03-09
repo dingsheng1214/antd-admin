@@ -5,6 +5,7 @@
 # IntelliJ project files
 .idea
 .idea/*
+dist/*
 *.iml
 out
 gen### Node template

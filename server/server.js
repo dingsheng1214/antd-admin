@@ -2,7 +2,9 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const koaBody = require('koa-body')
 const session = require('koa-session')
+const static = require('koa-static')
 const router = require('./config/routes')
+const path = require('path')
 
 const app = new Koa()
 // logger
@@ -20,5 +22,15 @@ app.use(session({
 }, app))
 // router
 app.use(router.routes())
+
+const isDev = process.env.NODE_ENV === 'development'
+if (!isDev) {
+  // --->production
+  // 所有 /public 的url 请求的都是静态文件， 这里用到的就是 webpack的 output中的 publicPath属性
+  app.use(static(path.join(__dirname, '../dist')))
+  // app.get('*', function (request, response) {
+  //   response.sendFile(path.resolve(__dirname, '../dist', 'index.html'))
+  // })
+}
 
 app.listen('8888')

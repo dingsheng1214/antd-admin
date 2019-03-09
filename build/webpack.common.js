@@ -20,7 +20,20 @@ const commonConfig = {
         ]
       },
       { // 处理图片
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              options: {
+                limit: 8192
+              }
+            }
+          }
+        ]
+      },
+      { // 处理图片
+        test: /\.svg$/,
         use: [
           {
             loader: 'file-loader',

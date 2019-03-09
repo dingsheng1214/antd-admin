@@ -31,6 +31,12 @@ class HomePage extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.setState = () => {
+
+    };
+  }
+
   // 左侧菜单切换按钮
   toggle = () => {
     const { collapsed } = this.state
