@@ -27,11 +27,11 @@ class UserSignUp extends Component {
           email,
         }).then((resp) => {
           const { code, msg, data: user } = resp.data
-          const { username: name } = user
           if (code !== 200) {
             message.error(msg);
           } else {
             message.success(msg);
+            const { username: name } = user
             goToPage(this, '/dashboard')
             store.dispatch({
               type: 'login_success',
